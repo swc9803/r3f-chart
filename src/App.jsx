@@ -1,5 +1,5 @@
 import './App.css';
-import MyElement3D from './MyElement3D';
+import MyElement3D from './components/MyElement3D';
 
 const App = () => {
   return (
