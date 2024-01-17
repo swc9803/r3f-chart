@@ -1,10 +1,10 @@
 import './App.css';
-import MyElement3D from './components/MyElement3D';
+import SelectCounty from './components/SelectCounty';
 
 const App = () => {
   return (
     <div>
-      <MyElement3D />
+      <SelectCounty />
     </div>
   );
 };
