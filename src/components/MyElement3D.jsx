@@ -1,36 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useFetch from '../hooks/useFetch.jsx';
 
 const MyElement3D = () => {
+  const apiKey = import.meta.env.VITE_POPULATION_API_KEY;
+
   const data = useFetch(
-    'http://apis.data.go.kr/1262000/CountryPopulationService2/getCountryPopulationList2?serviceKey=nXBdWqlW7S6U6xc5I2njmHZHE0y%2B8%2B8hZqY9Po2CEsgdmsqopKxuvyBXx96HBY0skjrIJN7t2%2FZ61%2FDZnxyVyw%3D%3D&pageNo=1&numOfRows=10&cond[country_nm::EQ]=가나&cond[country_iso_alp2::EQ]=GH',
+    `http://apis.data.go.kr/1262000/CountryPopulationService2/getCountryPopulationList2?serviceKey=${apiKey}&cond[country_nm::EQ]=영국`,
   );
 
-  useEffect(() => {
-    if (data === null) {
-      return;
-    }
-  }, [data]);
-
-  if (data === null) {
-    return <p>Loading...</p>;
-  }
+  const latestData = data ? data.data[0] : '';
 
   return (
     <>
-      <p>Result Code: {data.resultCode}</p>
-      <p>Result Message: {data.resultMsg}</p>
-
-      <h2>Data:</h2>
-      <ul>
-        {data.data.map((country, index) => (
-          <li key={index}>
-            <p>Country Name: {country.countryName}</p>
-            <p>Population: {country.population}</p>
-            {/* Add more properties as needed */}
-          </li>
-        ))}
-      </ul>
+      {!latestData ? (
+        <>
+          <p>loading</p>
+        </>
+      ) : (
+        <>
+          <p>Selected Country: {latestData.country_nm}</p>
+          <h2>Data:</h2>
+          <ul>
+            <li>
+              <p>Data: {latestData.popltn_cnt_src}</p>
+              <p>Population: {latestData.popltn_cnt}</p>
+            </li>
+          </ul>
+        </>
+      )}
     </>
   );
 };
