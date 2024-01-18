@@ -23,9 +23,12 @@ const SelectCounty = () => {
             <div key={index}>
               <ul>
                 <li>
-                  <p>Selected Country: {item.country_nm}</p>
-                  <p>population: {item.popltn_cnt}</p>
-                  <p>population rate: {item.popltn_growth}</p>
+                  <p>Selected Country : {item.country_nm}</p>
+                  <p>population : {item.popltn_cnt !== null ? item.popltn_cnt : 0}</p>
+                  <p>
+                    population growth rate :
+                    {item.popltn_growth !== null ? item.popltn_growth : 0}
+                  </p>
                   <br />
                 </li>
               </ul>

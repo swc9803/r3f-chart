@@ -1,10 +1,20 @@
 import './App.css';
-import SelectCounty from './components/SelectCounty';
+import { Canvas } from '@react-three/fiber';
+import SelectCountry from './components/SelectCountry';
+import Chart from './components/Chart';
 
 const App = () => {
   return (
     <div>
-      <SelectCounty />
+      <SelectCountry />
+      <Canvas
+        shadows
+        camera={{
+          position: [7, 7, 0],
+        }}
+      >
+        <Chart />
+      </Canvas>
     </div>
   );
 };
