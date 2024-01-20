@@ -23,7 +23,7 @@ const SelectCountry = ({ changeCountry }) => {
                 population growth rate :
                 {item.popltn_growth !== null ? item.popltn_growth : 0}
               </p>
-              <button onClick={() => selectCountry(item.country_nm)}>Select</button>
+              <button onClick={() => selectCountry(item)}>Select</button>
               <br />
             </li>
           </ul>
