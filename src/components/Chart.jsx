@@ -1,11 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 const Chart = ({ selectedCountry }) => {
+  const torusRef = useRef();
+
   useEffect(() => {
     if (selectedCountry) {
-      console.log(`${selectedCountry.country_nm} ${selectedCountry.popltn_cnt}`);
+      const scaleFactor = selectedCountry.popltn_cnt
+        ? selectedCountry.popltn_cnt / 100000000
+        : 1;
+      torusRef.current.scale.set(scaleFactor, scaleFactor, scaleFactor);
     }
   }, [selectedCountry]);
 
@@ -33,7 +38,7 @@ const Chart = ({ selectedCountry }) => {
         />
       </mesh>
 
-      <mesh castShadow receiveShadow position-y={1.7} scale={0.5}>
+      <mesh castShadow receiveShadow position-y={1.7} ref={torusRef}>
         <torusKnotGeometry args={[1, 0.2, 128, 32]} />
         <meshStandardMaterial color="#ffffff" roughness={0.1} metalness={0.6} />
       </mesh>
