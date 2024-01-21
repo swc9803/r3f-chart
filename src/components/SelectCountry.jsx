@@ -12,24 +12,23 @@ const SelectCountry = ({ changeCountry }) => {
   };
 
   return (
-    <>
+    <div className="country-container">
       {evenIndexData.map((item, index) => (
-        <div key={index}>
+        <div className="country-wrapper" key={index}>
           <ul>
             <li>
-              <p>Selected Country : {item.country_nm}</p>
               <p>population : {item.popltn_cnt !== null ? item.popltn_cnt : 0}</p>
               <p>
                 population growth rate :
                 {item.popltn_growth !== null ? item.popltn_growth : 0}
               </p>
-              <button onClick={() => selectCountry(item)}>Select</button>
+              <button onClick={() => selectCountry(item)}>{item.country_eng_nm}</button>
               <br />
             </li>
           </ul>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

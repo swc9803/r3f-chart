@@ -3,6 +3,25 @@ body {
   padding: 0;
 }
 
+.country-container {
+  position: fixed;
+  top: 50%;
+  height: 50vh;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  text-align: center;
+  .country-wrapper {
+    border: 2px solid black;
+    padding: 2px;
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+  }
+}
+
 canvas {
-  height: 100vh;
+  height: 50vh;
 }
