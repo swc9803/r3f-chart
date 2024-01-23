@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { OrbitControls } from '@react-three/drei';
+import gsap from 'gsap';
 
 const Chart = ({ selectedCountry }) => {
   const chartRef = useRef();
@@ -9,6 +10,17 @@ const Chart = ({ selectedCountry }) => {
       const scaleFactor = selectedCountry.popltn_cnt
         ? selectedCountry.popltn_cnt / 100000000
         : 1;
+
+      gsap.to(chartRef.current.scale, {
+        y: scaleFactor,
+        duration: 1,
+        ease: 'power2.out',
+      });
+      gsap.to(chartRef.current.rotation, {
+        y: `+= ${360 * (Math.PI / 180)}`,
+        duration: 1,
+        ease: 'power2.out',
+      });
     }
   }, [selectedCountry]);
 
@@ -39,7 +51,7 @@ const Chart = ({ selectedCountry }) => {
         <pointLight color="#ff4c3c" intensity={20} />
       </mesh>
 
-      <mesh castShadow receiveShadow position-y={1.7} ref={chartRef}>
+      <mesh castShadow receiveShadow ref={chartRef}>
         <boxGeometry args={[1, 2, 1]} />
         <meshStandardMaterial color="#ffffff" roughness={0.1} metalness={0.6} />
       </mesh>
