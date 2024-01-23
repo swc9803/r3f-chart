@@ -9,7 +9,6 @@ const Chart = ({ selectedCountry }) => {
       const scaleFactor = selectedCountry.popltn_cnt
         ? selectedCountry.popltn_cnt / 100000000
         : 1;
-      chartRef.current.scale.set(1, scaleFactor, 1);
     }
   }, [selectedCountry]);
 
@@ -41,7 +40,7 @@ const Chart = ({ selectedCountry }) => {
       </mesh>
 
       <mesh castShadow receiveShadow position-y={1.7} ref={chartRef}>
-        <cylinderGeometry args={[5, 5, 20, 32]} />
+        <boxGeometry args={[1, 2, 1]} />
         <meshStandardMaterial color="#ffffff" roughness={0.1} metalness={0.6} />
       </mesh>
     </>
